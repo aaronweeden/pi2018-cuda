@@ -2,6 +2,8 @@
 #PBS -l walltime=00:05:00
 ##PBS -l advres=baqk
 
+module load cudatoolkit
+
 cd $PBS_O_WORKDIR
 
 aprun -n 1 ./simple.exe
