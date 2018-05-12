@@ -53,10 +53,10 @@ int main()
   TryCuda(cudaMalloc((void**)&deviceNums, BYTE_COUNT));
 
   // On the host, fill an array with consecutive numbers, starting at 0
-//  for (int i = 0; i < NUM_COUNT; i++)
-//  {
-//    hostNums[i] = i;
-//  }
+  for (int i = 0; i < NUM_COUNT; i++)
+  {
+    hostNums[i] = i;
+  }
 
   // Copy the array from the host to the device
   TryCuda(cudaMemcpy(deviceNums, hostNums, BYTE_COUNT, cudaMemcpyHostToDevice));
