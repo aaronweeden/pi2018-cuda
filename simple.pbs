@@ -1,9 +1,10 @@
 #PBS -l nodes=1:ppn=16:xk
 #PBS -l walltime=00:05:00
+#PBS -N simple
 ##PBS -l advres=baqk
 
 module load cudatoolkit
 
 cd $PBS_O_WORKDIR
 
-aprun -n 1 ./simple-noinit.exe
+aprun -n 1 ./simple.exe
