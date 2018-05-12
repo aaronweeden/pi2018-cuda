@@ -3,8 +3,6 @@
 #PBS -N simple
 ##PBS -l advres=baqk
 
-module load cudatoolkit
-
 cd $PBS_O_WORKDIR
 
 aprun -n 1 ./simple.exe
