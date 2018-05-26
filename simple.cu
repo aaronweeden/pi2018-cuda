@@ -15,6 +15,9 @@
 // malloc() and free()
 #include <stdlib.h>
 
+// Import library so we can call omp_get_wtime()
+#include <omp.h>
+
 // Define the number of numbers in each array
 #define NUM_COUNT 10
 
@@ -47,9 +50,7 @@ int main()
   int * deviceNums;
 
   // Start a timer
-  cudaEvent_t start;
-  cudaEventCreate(&start);
-  cudaEventRecord(start);
+  double startTime = omp_get_wtime();
 
   // Allocate memory for the host array
   TryMalloc(hostNums = (int*)malloc(BYTE_COUNT));
@@ -86,13 +87,7 @@ int main()
   free(hostNums);
 
   // Stop the timer
-  cudaEvent_t stop;
-  cudaEventCreate(&stop);
-  cudaEventRecord(stop);
-  cudaEventSynchronize(stop);
-  float elapsedTime;
-  cudaEventElapsedTime(&elapsedTime, start, stop);
-  printf("Runtime: %f milliseconds\n", elapsedTime);
+  printf("Runtime: %f seconds\n", omp_get_wtime() - startTime);
 
   return 0;
 }
