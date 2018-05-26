@@ -92,7 +92,7 @@ int main()
   cudaEventSynchronize(stop);
   float elapsedTime;
   cudaEventElapsedTime(&elapsedTime, start, stop);
-  printf("Runtime: %f seconds\n", elapsedTime);
+  printf("Runtime: %f milliseconds\n", elapsedTime);
 
   return 0;
 }
