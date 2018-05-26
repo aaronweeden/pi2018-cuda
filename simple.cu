@@ -46,6 +46,11 @@ int main()
   int * hostNums;
   int * deviceNums;
 
+  // Start a timer
+  cudaEvent_t start;
+  cudaEventCreate(&start);
+  cudaEventRecord(start);
+
   // Allocate memory for the host array
   TryMalloc(hostNums = (int*)malloc(BYTE_COUNT));
 
@@ -79,6 +84,15 @@ int main()
 
   // De-allocate memory for the host array
   free(hostNums);
+
+  // Stop the timer
+  cudaEvent_t stop;
+  cudaEventCreate(&stop);
+  cudaEventRecord(stop);
+  cudaEventSynchronize(stop);
+  float elapsedTime;
+  cudaEventElapsedTime(&elapsedTime, start, stop);
+  printf("Runtime: %f seconds\n", elapsedTime);
 
   return 0;
 }
